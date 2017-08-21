@@ -24,7 +24,7 @@ public class TestController {
 		UserInfo userinfo = new UserInfo();
 		List<UserInfo> list = new ArrayList<UserInfo>();
 		list = service.getUserList();
-		model.addAttribute("singPerson", userinfo);
+		model.addAttribute("singlePerson", userinfo);
 		model.addAttribute("people", list);
 		return "index";
 	}
