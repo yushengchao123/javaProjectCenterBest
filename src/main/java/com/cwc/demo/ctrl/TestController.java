@@ -13,7 +13,6 @@ import com.cwc.demo.model.UserInfo;
 import com.cwc.demo.service.TestService;
 
 @Controller
-@RequestMapping("/cwc")
 public class TestController {
 	
 	@Autowired
