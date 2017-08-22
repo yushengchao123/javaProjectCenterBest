@@ -8,4 +8,24 @@
              sex as "sex"
              from pw_userinfo
    </select>
+   
+   <select id="queryFile" resultType="com.cwc.demo.model.FileModel">
+      select id as "fileId",
+             file_name as "fileName",
+             file_path as "filePath",
+             file_type as "fileType",
+             file as "uploadFile",
+             update_date as "lastModifyDate"
+             from pw_file_info
+   </select>
+   
+   <insert id = "saveFile" parameterType="com.cwc.demo.model.FileModel">
+      insert into pw_file_info(id,file_name,file_path,update_date,file_type,file)
+      values(#{fileId,jdbcType=VARCHAR},
+             #{fileName,jdbcType=VARCHAR},
+             #{filePath,jdbcType=VARCHAR},
+             #{lastModifyDate,jdbcType=DATE},
+             #{fileType,jdbcType=VARCHAR},
+             #{uploadFile,jdbcType=BLOB},)
+   </insert>
 </mapper>
