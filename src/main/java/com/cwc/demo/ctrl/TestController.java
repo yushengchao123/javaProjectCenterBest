@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
@@ -46,7 +47,7 @@ public class TestController {
 	}
 	
 	@RequestMapping(value = { "/save" })
-	public String save(@RequestParam("eventfile") MultipartFile file,GeneralModel model,
+	public @ResponseBody String save(@RequestParam("eventfile") MultipartFile file,GeneralModel model,
 			HttpServletRequest request) {
 		System.out.println("66666666control");
 		Boolean flag=service.save(model, file, request);
@@ -64,7 +65,7 @@ public class TestController {
 		return "traditionalLogin";
 	}
 	@RequestMapping(value = {"/getAge"},method = RequestMethod.POST)
-	public String getAge(Model model){
+	public @ResponseBody String getAge(Model model){
 		log.info("获取年龄开始");
 		map.put("success", true);
 		Map<String,Object> map2 = new HashMap<String,Object>();
