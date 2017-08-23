@@ -15,6 +15,6 @@ public interface MyBatisDao {
 
 	List<FileModel> queryFile();
 
-	void saveFile(GeneralModel model);
+	void saveFile(FileModel file);
 
 }

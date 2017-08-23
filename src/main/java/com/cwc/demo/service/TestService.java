@@ -30,10 +30,10 @@ public class TestService {
 		return dao.getUserList();
 	}
 	@Transactional
-	public void save(GeneralModel model, MultipartFile file,
+	public Boolean save(GeneralModel model, MultipartFile file,
 			HttpServletRequest request) {
 			File file2 = null;
-			System.out.println(file);
+			Boolean b = false;
 			if (!file.isEmpty() && file != null) {
 				System.out.println("进入文件解析");
 				BufferedOutputStream out = null;
@@ -47,17 +47,19 @@ public class TestService {
 					out.close();
 					model.getFile().setUploadFile(content);
 					model.getFile().setFileName(file.getOriginalFilename());
+					model.getFile().setLastModifyDate(new Date());
+					dao.saveFile(model.getFile());
+					b = true;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-				model.getFile().setLastModifyDate(new Date());
-				dao.saveFile(model);
 			if (file2 != null) {
 				if (file2.exists()) {//把临时生成的文件删除。
 					file2.delete();
 				}
 			}
+			return b;
 	}
 
 }

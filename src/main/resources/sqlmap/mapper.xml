@@ -26,6 +26,6 @@
              #{filePath,jdbcType=VARCHAR},
              #{lastModifyDate,jdbcType=DATE},
              #{fileType,jdbcType=VARCHAR},
-             #{uploadFile,jdbcType=BLOB},)
+             #{uploadFile,jdbcType=BLOB})
    </insert>
 </mapper>

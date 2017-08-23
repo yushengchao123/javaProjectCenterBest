@@ -1,32 +1,22 @@
 package com.cwc.demo.ctrl;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
-
-
-
-
-
-
-
-import com.cwc.demo.model.FileModel;
+import com.alibaba.fastjson.JSON;
 import com.cwc.demo.model.GeneralModel;
 import com.cwc.demo.model.UserInfo;
 import com.cwc.demo.service.TestService;
@@ -39,6 +29,11 @@ public class TestController {
 	
 	private String page;
 	private Map<String,Object> map= new HashMap<String,Object>();
+	private static Logger log = Logger.getLogger(TestController.class);
+
+	public void setMap(Map<String, Object> map) {
+		this.map = map;
+	}
 	
 	@RequestMapping("/index")
 	public String index(Model model){		
@@ -51,11 +46,13 @@ public class TestController {
 	}
 	
 	@RequestMapping(value = { "/save" })
-	public String policyAdd2(@RequestParam("eventfile") MultipartFile file,GeneralModel model,
+	public String save(@RequestParam("eventfile") MultipartFile file,GeneralModel model,
 			HttpServletRequest request) {
 		System.out.println("66666666control");
-		service.save(model, file, request);
-		return "index";
+		Boolean flag=service.save(model, file, request);
+		log.info("保存文件:"+flag);
+		map.put("success", flag);
+		return JSON.toJSONString(map);
 	}
 	@RequestMapping(value = { "/showtime" })
 	public String traditionalLogin(Model model) {	
@@ -65,6 +62,16 @@ public class TestController {
 		model.addAttribute("singlePerson", userinfo);
 		model.addAttribute("people", list);
 		return "traditionalLogin";
+	}
+	@RequestMapping(value = {"/getAge"},method = RequestMethod.POST)
+	public String getAge(Model model){
+		log.info("获取年龄开始");
+		map.put("success", true);
+		Map<String,Object> map2 = new HashMap<String,Object>();
+		map2.put("age", 18);
+		map.put("person", map2);
+		return JSON.toJSONString(map);
+		
 	}
 			
 	
