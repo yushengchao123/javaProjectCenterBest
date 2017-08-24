@@ -74,6 +74,14 @@ public class TestController {
 		return JSON.toJSONString(map);
 		
 	}
-			
+	@RequestMapping(value = { "/main" })
+	public String main(Model model) {	
+		UserInfo userinfo = new UserInfo();
+		List<UserInfo> list = new ArrayList<UserInfo>();
+		list = service.getUserList();
+		model.addAttribute("singlePerson", userinfo);
+		model.addAttribute("people", list);
+		return "mainlist";
+	}		
 	
 }
