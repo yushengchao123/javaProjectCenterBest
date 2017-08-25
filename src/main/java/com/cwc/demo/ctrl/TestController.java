@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.spi.http.HttpContext;
 
+import org.apache.http.HttpRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,12 +39,14 @@ public class TestController {
 	}
 	
 	@RequestMapping("/index")
-	public String index(Model model){		
+	public String index(Model model,HttpServletRequest request){	
+		log.info(request.getRemoteAddr());
 		UserInfo userinfo = new UserInfo();
 		List<UserInfo> list = new ArrayList<UserInfo>();
 		list = service.getUserList();
 		model.addAttribute("singlePerson", userinfo);
 		model.addAttribute("people", list);
+		model.addAttribute("ip",request.getRemoteAddr());
 		return "index";
 	}
 	
@@ -74,6 +78,14 @@ public class TestController {
 		return JSON.toJSONString(map);
 		
 	}
-			
+	@RequestMapping(value = { "/main" })
+	public String main(Model model) {	
+		UserInfo userinfo = new UserInfo();
+		List<UserInfo> list = new ArrayList<UserInfo>();
+		list = service.getUserList();
+		model.addAttribute("singlePerson", userinfo);
+		model.addAttribute("people", list);
+		return "mainlist";
+	}		
 	
 }
