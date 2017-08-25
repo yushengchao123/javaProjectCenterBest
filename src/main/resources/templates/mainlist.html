@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mainlist.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3"></meta>
+    <meta name="description" content="this is my page"></meta>
+    <meta name="content-type" content="text/html; charset=UTF-8"></meta>
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<link th:href="@{js/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{js/lib/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    <link th:href="@{js/cwc/css/mainlist.css}" rel="stylesheet"/>
+    
+    <script th:src="@{js/lib/jquery/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+	<script th:src="@{js/cwc/mainlist.js}" type="text/javascript"></script>
+  </head>
+  
+  <body>
+   
+   <div class="row">
+    <!--
+    	作者：291883553@qq.com
+    	时间：2017-08-24
+    	描述：head内容
+    -->
+	<div class="navbar navbar-duomi navbar-static-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<h3 >超哥系统原型模型</h3>
+				
+			</div>
+			<div class="navbar-right">
+					<div style="margin: 5px 100px 0  0;">
+					<button class="btn btn-default" type="button" onclick="addCondition()">欢迎赞助我们</button>
+					<button class="btn btn-default" type="button">欢迎加入我们</button>
+						
+					</div>
+					
+			</div>
+		</div>
+	</div>
+	<!--
+    	作者：291883553@qq.com
+    	时间：2017-08-24
+    	描述：左侧导航栏
+    -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
+					<li class="active">
+						<a href="#Home" data-toggle="tab">
+							<i class="glyphicon glyphicon-th-large"></i> 首页
+						</a>
+					</li>
+					<li>
+						<a href="#systemSetting" class="nav-header collapsed" data-toggle="collapse"  >
+							<i class="glyphicon glyphicon-cog"></i> 系统管理
+							<span class="pull-right glyphicon glyphicon-chevron-down"></span>
+						</a>
+						<ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
+							<li>
+								<a href="#"><i class="glyphicon glyphicon-user"></i>用户管理</a>
+							</li>
+							<li>
+								<a href="#"><i class="glyphicon glyphicon-th-list"></i>菜单管理</a>
+							</li>
+							<li>
+								<a href="#"><i class="glyphicon glyphicon-asterisk"></i>角色管理</a>
+							</li>
+							<li>
+								<a href="#"><i class="glyphicon glyphicon-edit"></i>修改密码</a>
+							</li>
+							<li>
+								<a href="#"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#MovieMusic" data-toggle="tab">
+							<i class="glyphicon glyphicon-credit-card"></i> 视频音乐
+						</a>
+					</li>
+					<li>
+						<a href="#Cartoon" tabindex="-1" data-toggle="tab">
+							<i class="glyphicon glyphicon-globe"></i> 动漫专区
+							<span class="label label-warning pull-right">5</span>
+						</a>
+					</li>
+					<li>
+						<a href="#Games" tabindex="-1" data-toggle="tab">
+							<i class="glyphicon glyphicon-calendar"></i> 游戏娱乐
+						</a>
+					</li>
+					<li>
+						<a href="#Loading" tabindex="-1" data-toggle="tab">
+							<i class="glyphicon glyphicon-fire"></i> 云盘系统
+						</a>
+					</li>
+					<li>
+						<a href="#Author" tabindex="-1" data-toggle="tab">
+							<i class="glyphicon glyphicon-fire"></i> 关于我们
+						</a>
+					</li>
+					
+					
+				</ul>
+			</div>
+			<div class="col-md-10">
+				
+				
+				<!--
+                	作者：291883553@qq.com
+                	时间：2017-08-24
+                	描述：模块内容部分
+                -->
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in active" id="Home">
+					<p>我是一只小小小菜鸟，菜鸟飞啊飞飞很高啊，一不小心摔死了，谁来给他辅导</p>
+					<div class="row">	
+						<center><label><p><h3>系统待开发模块</h3></p>					
+								</label>
+								</center>	
+					</div>
+					<div class="row">
+						<ul class="ullayout">
+							<li>
+								<div class="lilayout">文件</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">视频</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">图片</div>
+							</li>
+							
+						</ul>
+						
+					</div>
+				</div>
+				<!--
+                	作者：291883553@qq.com
+                	时间：2017-08-24
+                	描述：音乐视频模块
+                -->
+				<div class="tab-pane fade" id="MovieMusic">
+					<p>我就是停不下来，你说什么我听不见</p>
+					<div class="row">	
+						<center><label><p><h3>视频音乐</h3></p>						
+								</label>
+						</center>		
+					</div>
+					<div class="row">
+						<ul class="ullayout">
+							<li>
+								<div class="lilayout">文件</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">视频</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">图片</div>
+							</li>
+							
+						</ul>
+						
+					</div>
+				</div>
+				<!--
+                	作者：291883553@qq.com
+                	时间：2017-08-24
+                	描述：动漫模块
+                -->
+				<div class="tab-pane fade" id="Cartoon">
+					<p>回忆过去，飙车的少年忘不了</p>
+					<div class="row">	
+						<center><label><p><h3>动漫模块</h3></p>						
+								</label>
+						</center>		
+					</div>
+					<div class="row">
+						<ul class="ullayout">
+							<li>
+								<div class="lilayout">文件</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">视频</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">图片</div>
+							</li>
+							
+						</ul>
+						
+					</div>
+				</div>
+				<!--
+                	作者：291883553@qq.com
+                	时间：2017-08-24
+                	描述：游戏
+                -->
+				<div class="tab-pane fade" id="Games">
+					<p>不要看我，我不是一个爱玩的少年，嘿嘿嘿
+					</p>
+					<div class="row">	
+						<center><label><p><h3>游戏模块</h3></p>						
+								</label>
+						</center>		
+					</div>
+					<div class="row">
+						<ul class="ullayout">
+							<li>
+								<div class="lilayout">文件</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">视频</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">图片</div>
+							</li>
+							
+						</ul>
+						
+					</div>
+				</div>
+				<!--
+                	作者：291883553@qq.com
+                	时间：2017-08-24
+                	描述：云盘
+                -->
+				<div class="tab-pane fade" id="Loading">
+					
+					<div class="row">	
+						<center><label><p><h3>系统待开发模块</h3></p>						
+								</label>
+						</center>		
+					</div>
+					<div class="row">
+						<ul class="ullayout">
+							<li>
+								<div class="lilayout">文件</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">视频</div>
+						
+							</li>
+							<li>
+								<div class="lilayout"><a href="index">图片</a></div>
+							</li>
+							
+						</ul>
+						
+					</div>
+				</div>
+				
+				<!--
+                	作者：291883553@qq.com
+                	时间：2017-08-24
+                	描述：关于我们
+                -->
+				<div class="tab-pane fade" id="Author">
+					
+					<div class="row">	
+						<center><label><p><h3>我们是一个大家族</h3></p>						
+								</label>
+						</center>		
+					</div>
+					<div class="row">
+						<ul class="ullayout">
+							<li>
+								<div class="lilayout">ysc</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">cwc</div>
+						
+							</li>
+							<li>
+								<div class="lilayout">飙车老司机</div>
+							</li>
+							
+						</ul>
+						
+					</div>
+				</div>
+				
+			</div>
+				
+				
+				
+				
+			</div>
+		</div>
+	</div>
+
+</div>
+   
+   <!-- 模态框逗逼模块 -->
+   <div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:1000px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">欢迎赞助我们哦</h4>
+            </div>
+            <div class="modal-body">
+            	<center>
+            <img th:src="@{js/cwc/css/img/money3.jpg}" /> <img th:src="@{js/cwc/css/img/money2.jpg}" />
+            	</center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      
+            </div>
+        </div>
+    </div>
+</div>
+   
+  </body>
+</html>
