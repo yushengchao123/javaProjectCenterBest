@@ -1,6 +1,7 @@
 $(function(){
-	initFileInput("file-Portrait1");		
-})
+	initFileInput("file-Portrait1");
+	console.log($("#loginIp").val());
+});
 function getName(name){
 	$.ajax({
 		url:"getAge",
