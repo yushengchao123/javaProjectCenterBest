@@ -24,7 +24,11 @@
   </head>
   
   <body>
-    <input type="hidden" id="loginIp" value="${ip}"/>
+    <input type="hidden" id="loginIp" th:value="${request.ip}"/>
+    <input type="hidden" id="loginPort" th:value="${request.port}"/>
+    <input type="hidden" id="loginHost" th:value="${request.host}"/>
+    <input type="hidden" id="loginPath" th:value="${request.path}"/>
+    <input type="hidden" id="loginTime" th:value="${request.time}"/>
     <div class="panel panel-primary">
        <div class="panel-heading">
           <h3 class="panel-title">访问model</h3>

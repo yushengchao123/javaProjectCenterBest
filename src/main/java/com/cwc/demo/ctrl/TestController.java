@@ -1,6 +1,7 @@
 package com.cwc.demo.ctrl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,12 @@ public class TestController {
 		list = service.getUserList();
 		model.addAttribute("singlePerson", userinfo);
 		model.addAttribute("people", list);
-		model.addAttribute("ip",request.getRemoteAddr());
+		map.put("path", request.getContextPath());
+		map.put("host", request.getRemoteHost());
+		map.put("ip", request.getRemoteAddr());
+		map.put("port", request.getRemotePort());
+		map.put("time", new Date());
+		model.addAttribute("request",map);
 		return "index";
 	}
 	
@@ -60,7 +66,7 @@ public class TestController {
 		return JSON.toJSONString(map);
 	}
 	@RequestMapping(value = { "/showtime" })
-	public String traditionalLogin(Model model) {	
+	public String traditionalLogin(Model model,HttpServletRequest request) {	
 		UserInfo userinfo = new UserInfo();
 		List<UserInfo> list = new ArrayList<UserInfo>();
 		list = service.getUserList();
@@ -79,12 +85,18 @@ public class TestController {
 		
 	}
 	@RequestMapping(value = { "/main" })
-	public String main(Model model) {	
+	public String main(Model model,HttpServletRequest request) {	
 		UserInfo userinfo = new UserInfo();
 		List<UserInfo> list = new ArrayList<UserInfo>();
 		list = service.getUserList();
 		model.addAttribute("singlePerson", userinfo);
 		model.addAttribute("people", list);
+		map.put("path", request.getContextPath());
+		map.put("host", request.getRemoteHost());
+		map.put("ip", request.getRemoteAddr());
+		map.put("port", request.getRemotePort());
+		map.put("time", new Date());
+		model.addAttribute("request",map);
 		return "mainlist";
 	}		
 	

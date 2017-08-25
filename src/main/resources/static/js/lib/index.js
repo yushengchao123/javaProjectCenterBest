@@ -1,6 +1,7 @@
 $(function(){
 	initFileInput("file-Portrait1");
-	console.log($("#loginIp").val());
+	var request = new HRequest($("#loginIp").val(),$("#loginPort").val(),$("#loginHost").val(),$("#loginPath").val(),$("#loginTime").val());
+	console.log(request);
 });
 function getName(name){
 	$.ajax({
@@ -61,7 +62,14 @@ function initFileInput(ctrlName) {
 
     }).on('fileerror', function(event, data, msg) {  //一个文件上传失败
         console.log('文件上传失败！'+data.id);
+    });
+    
+}
 
-
-    })
+function HRequest(ip,port,host,path,time){
+	this.ip = ip;
+	this.port = port;
+	this.host = host;
+	this.path = path;
+	this.time = time;
 }
