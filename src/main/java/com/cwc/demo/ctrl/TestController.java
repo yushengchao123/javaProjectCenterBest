@@ -56,6 +56,14 @@ public class TestController {
 		return "index";
 	}
 	
+	@RequestMapping("/login")
+	public @ResponseBody Map<String,Object> validLogin(UserInfo u){
+		log.info("登录校验");
+		Boolean b = service.validLogin(u);
+		map.put("success", b);
+		return map;
+	}
+	
 	@RequestMapping(value = { "/save" })
 	public @ResponseBody String save(@RequestParam("eventfile") MultipartFile file,GeneralModel model,
 			HttpServletRequest request) {

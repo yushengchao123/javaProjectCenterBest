@@ -4,18 +4,18 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cwc.demo.dao.MyBatisDao;
-import com.cwc.demo.model.FileModel;
 import com.cwc.demo.model.GeneralModel;
 import com.cwc.demo.model.UserInfo;
 
@@ -27,6 +27,9 @@ public class TestService {
 
 	public List<UserInfo> getUserList() {
 		// TODO Auto-generated method stub
+		Map<String,Object> map = new HashMap<String,Object>();
+		map = dao.getUserMap();
+		System.out.println(map);
 		return dao.getUserList();
 	}
 	@Transactional
@@ -60,6 +63,30 @@ public class TestService {
 				}
 			}
 			return b;
+	}
+	public Boolean validLogin(UserInfo u) {
+		// TODO Auto-generated method stub
+		Boolean b = null;
+		try {
+			String count = dao.isExist(u);
+			if(count.equals("1")){
+				String password = dao.validLogin(u);
+				if(password==null){
+					password = "";
+				}
+				if(password.equals(u.getPassword())){
+					b = true;
+				}else{
+					b = false;
+				}
+			}else{
+				b = false;
+			}			
+		} catch (Exception e) {
+			b = false;
+			// TODO: handle exception
+		}	
+		return b;
 	}
 
 }

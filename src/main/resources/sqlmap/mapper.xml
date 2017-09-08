@@ -28,4 +28,16 @@
              #{fileType,jdbcType=VARCHAR},
              #{uploadFile,jdbcType=BLOB})
    </insert>
+   
+   <select id="getUserMap" resultType="java.util.HashMap">
+       select * from pw_userinfo limit 1
+   </select>
+   
+   <select id = "isExist" parameterType="com.cwc.demo.model.UserInfo" resultType= "java.lang.String">
+       SELECT CAST(COUNT(1) AS CHAR) FROM pw_userinfo WHERE login_id = #{loginId,jdbcType=VARCHAR}
+   </select>
+   
+   <select id = "validLogin" parameterType="com.cwc.demo.model.UserInfo" resultType="java.lang.String">
+       select password from pw_userinfo where login_id = #{loginId,jdbcType=VARCHAR}
+   </select>
 </mapper>
