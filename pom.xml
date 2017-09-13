@@ -220,11 +220,11 @@
       <artifactId>poi</artifactId>
       <version>3.8</version>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
       <version>3.8</version>
-    </dependency>
+    </dependency> -->
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>druid</artifactId>
@@ -243,11 +243,11 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-actuator</artifactId>
     </dependency>
-    <!-- <dependency>  
+    <dependency>  
        <groupId>net.sourceforge.nekohtml</groupId>  
        <artifactId>nekohtml</artifactId>
        <version>1.9.22</version>
-    </dependency> -->
+    </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>

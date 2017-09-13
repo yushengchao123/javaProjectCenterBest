@@ -25,12 +25,4 @@ $(function(){
 						}
 					}				
 				});
-				/*if(username=="903" ){
-					$("#cc").removeClass("hidden");
-					self.location='/taobao/index'; 
-			
-				}else{
-					$("#dd").removeClass("hidden");
-					
-				}*/
 			}
