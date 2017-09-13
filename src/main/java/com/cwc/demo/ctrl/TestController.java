@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
+import com.cwc.common.utils.UrlTitleUtils;
 import com.cwc.demo.model.GeneralModel;
 import com.cwc.demo.model.UserInfo;
 import com.cwc.demo.service.TestService;
@@ -60,7 +61,11 @@ public class TestController {
 	public @ResponseBody Map<String,Object> validLogin(UserInfo u){
 		log.info("登录校验");
 		Boolean b = service.validLogin(u);
+		String url = "main";
 		map.put("success", b);
+		if(b){
+			map.put("url", url);
+		}
 		return map;
 	}
 	

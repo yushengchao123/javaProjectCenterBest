@@ -19,7 +19,7 @@ $(function(){
 					success : function(data){
 						if(data.success){
 							$("#cc").removeClass("hidden");
-							self.location = "/taobao/index";
+							self.location = data.url;
 						}else{
 							$("#dd").removeClass("hidden");
 						}
