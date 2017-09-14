@@ -3,6 +3,7 @@ package com.cwc.demo.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.cwc.demo.model.FileModel;
@@ -22,6 +23,8 @@ public interface MyBatisDao {
 	String validLogin(UserInfo u);
 
 	String isExist(UserInfo u);
+
+	UserInfo findUserByName(@Param("userName")String userName);
 
 
 }

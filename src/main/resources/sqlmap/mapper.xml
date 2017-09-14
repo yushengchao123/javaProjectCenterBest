@@ -9,6 +9,12 @@
              from pw_userinfo
    </select>
    
+   <select id="findUserByName" parameterType="java.lang.String" resultType="com.cwc.demo.model.UserInfo">
+       select login_id as "loginId",
+             password as "password"
+             from pw_userinfo where login_id = #{userName,jdbcType=VARCHAR}
+   </select>
+   
    <select id="queryFile" resultType="com.cwc.demo.model.FileModel">
       select id as "fileId",
              file_name as "fileName",
