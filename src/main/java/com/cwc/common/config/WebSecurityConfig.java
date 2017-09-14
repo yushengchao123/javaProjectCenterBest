@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //允许所有用户访问"/"和"/home"
         http.authorizeRequests()
-                .antMatchers("/", "/showtime").permitAll()
+                .antMatchers("/index").permitAll()
                 //其他地址的访问均需验证权限
                 .anyRequest().authenticated()
                 .and()
@@ -36,10 +36,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //指定登录页是"/login"
                 .loginPage("/showtime")
                 .defaultSuccessUrl("/main")//登录成功后默认跳转到"/main"
+                .failureUrl("/403")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/showtime")//退出登录后的默认url是"/home"
+                .logoutSuccessUrl("/index")//退出登录后的默认url是"/home"
                 .permitAll();
 
     }
@@ -48,9 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder());
-
+        auth.userDetailsService(customUserDetailsService());
+        //auth.inMemoryAuthentication().withUser("cwc").password("123456").roles("ROLE_ADMIN");
     }
 
     /**

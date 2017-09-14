@@ -121,4 +121,9 @@ public class TestController {
 		model.addAttribute("people", list);
 		return "ReactLogin";
 	}
+	
+	@RequestMapping("/403")
+    public String error(){
+        return "403";
+    }
 }
