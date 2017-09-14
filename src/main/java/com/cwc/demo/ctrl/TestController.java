@@ -112,5 +112,13 @@ public class TestController {
 		model.addAttribute("request",map);
 		return "mainlist";
 	}		
-	
+	@RequestMapping(value = { "/demo" })
+	public String ReactLogin(Model model,HttpServletRequest request) {	
+		UserInfo userinfo = new UserInfo();
+		List<UserInfo> list = new ArrayList<UserInfo>();
+		list = service.getUserList();
+		model.addAttribute("singlePerson", userinfo);
+		model.addAttribute("people", list);
+		return "ReactLogin";
+	}
 }

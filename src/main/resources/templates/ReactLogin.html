@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>React登录界面</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3"></meta>
+    <meta name="description" content="this is my page"></meta>
+    <meta name="content-type" content="text/html; charset=UTF-8"></meta>
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<link th:href="@{/js/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/js/lib/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    <link th:href="@{/js/cwc/css/login.css}" rel="stylesheet"/>
+    <link th:href="@{/js/lib/react/css/antd.css}" rel="stylesheet"/>
+    <script th:src="@{/js/lib/jquery/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/lib/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/lib/react/react-0.14.0.js}" type="text/javascript"></script>	  
+   <script th:src="@{/js/lib/react/react-dom-0.14.0.js}" type="text/javascript"></script>
+   <script th:src="@{/js/lib/react/browser.min.js}" type="text/javascript"></script>	 	 
+   <script th:src="@{/js/lib/react/antd-with-locales.js}" type="text/javascript"></script>
+   
+   </head>
+	
+  
+  <body>
+   
+   <div id="demmo"></div>
+		<script type="text/babel">
+			const { Button,Checkbox,onChange,Layout,Icon,Calendar,onPanelChange,DatePicker,Row, Col,Menu,Form,Input, Radio,Tooltip} = antd
+    	const { Header, Footer, Sider, Content } = Layout
+    	const { MonthPicker, RangePicker } = DatePicker
+		const SubMenu = Menu.SubMenu;
+		const MenuItemGroup = Menu.ItemGroup;
+	
+	
+
+	
+	
+  var Sider1 = React.createClass({
+	 getInitialState() {
+    return {
+      current: 'mail'
+    }
+  },
+  handleClick(e) {
+    console.log('click ', e.key);
+    this.setState({
+      current: e.key
+    });
+  },
+  render() {
+    return (
+      <Layout>
+    <Sider style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }}>
+      <div className="logo" />
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} onClick={this.handleClick} >
+        <Menu.Item key="1">
+          <Icon type="user" />
+          <span className="nav-text">nav 1</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="video-camera" />
+          <span className="nav-text">nav 2</span>
+        </Menu.Item>
+        <Menu.Item key="3">
+          <Icon type="upload" />
+          <span className="nav-text">nav 3</span>
+        </Menu.Item>
+        <Menu.Item key="4">
+          <Icon type="bar-chart" />
+          <span className="nav-text">nav 4</span>
+        </Menu.Item>
+        <Menu.Item key="5">
+          <Icon type="cloud-o" />
+          <span className="nav-text">nav 5</span>
+        </Menu.Item>
+        <Menu.Item key="6">
+          <Icon type="appstore-o" />
+          <span className="nav-text">nav 6</span>
+        </Menu.Item>
+        <Menu.Item key="7">
+          <Icon type="team" />
+          <span className="nav-text">nav 7</span>
+        </Menu.Item>
+        <Menu.Item key="8">
+          <Icon type="shop" />
+          <span className="nav-text">nav 8</span>
+        </Menu.Item>
+      </Menu>
+    </Sider>
+    <Layout style={{ marginLeft: 200 }}>
+      <Header style={{ background: '#fff', padding: 0 }} />
+      <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+        <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
+           <Picker/>
+          <br />
+          Really
+          <br />...<br />...<br />...<br />
+          <Demo/>
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />
+          content
+        </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>
+        Ant Design ©2016 Created by Ant UED
+      </Footer>
+    </Layout>
+  </Layout>
+    );
+  }
+});
+
+var Picker = React.createClass({
+
+  handleChange: function(value) {
+	
+    var cc=value;
+ 
+    console.log(cc);
+  },
+  render: function() {
+    return (<DatePicker onChange={this.handleChange}    />)
+  }
+});
+
+
+
+const FormItem = Form.Item;
+const RadioGroup = Radio.Group;
+
+var Demo = React.createClass({
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('收到表单值：', this.props.form.getFieldsValue());
+ 
+  },
+
+  render() {
+    let { getFieldProps } = this.props.form;
+    var formItemLayout = {
+      labelCol: { span: 6 },
+      wrapperCol: { span: 14 },
+    };
+    return (
+      <Form horizontal onSubmit={this.handleSubmit}>
+        <FormItem
+          {...formItemLayout}
+          label="用户名：">
+          <p className="ant-form-text" {...getFieldProps('name')} id="userName" name="userName">大眼萌 minion</p>
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label="密码：">
+          <Input type="password" {...getFieldProps('pass')} placeholder="请输入密码" />
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label="您的性别：">
+          <RadioGroup {...getFieldProps('gender', { initialValue: 'female' })}>
+            <Radio value="male">男的</Radio>
+            <Radio value="female">女的</Radio>
+          </RadioGroup>
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label="开始时间">
+          <Picker {...getFieldProps('dd')}  />
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label="备注："
+          help="随便写点什么">
+          <Input type="textarea" placeholder="随便写" {...getFieldProps('remark')} />
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label={<span>卖身华府 <Tooltip title="我为秋香"><Icon type="question-circle-o" /></Tooltip> ：</span>}>
+          <label>
+            <Checkbox {...getFieldProps('agreement')} />同意
+          </label>
+        </FormItem>
+        <FormItem wrapperCol={{ span: 16, offset: 6 }} style={{ marginTop: 24 }}>
+          <Button type="primary" htmlType="submit">确定</Button>
+        </FormItem>
+      </Form>
+    );
+  }
+});
+
+Demo = Form.create()(Demo);
+
+			
+
+var CommentList = React.createClass({
+  render: function() {
+    return (
+      <div className="commentList">
+        Hello, world! I am a CommentList.
+      	 <Layout>
+      <Header>Header</Header>
+      <Content>Content
+      <div style={{ width: 290, border: '1px solid #d9d9d9', borderRadius: 4 }}>
+    <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+  </div>
+  	
+  	<div>
+    <DatePicker onChange={onChange} />
+    <br />
+    <MonthPicker onChange={onChange} placeholder="Select month" />
+    <br />
+    <RangePicker onChange={onChange} />
+  </div>
+  
+  
+  <div>
+    <Row>
+      <Col  span={12}><div className="ABC ">col-12</div></Col>
+      <Col span={12}>col-12</Col>
+    </Row>
+    <Row>
+      <Col span={8}>col-8</Col>
+      <Col span={8}>col-8</Col>
+      <Col span={8}>col-8</Col>
+    </Row>
+    <Row>
+      <Col span={6}>col-6</Col>
+      <Col span={6}>col-6</Col>
+      <Col span={6}>col-6</Col>
+      <Col span={6}>col-6</Col>
+    </Row>
+  </div>,
+      </Content>
+      <Footer>Footer<Icon type="link" /></Footer>
+    </Layout>
+    
+      </div>
+    );
+  }
+});
+
+var CommentBox = React.createClass({
+  render: function() {
+  return (
+      <div className="commentBox">
+        Hello, world! I am a CommentBox.
+           <Sider1/>
+          
+      </div>
+    );
+  }
+});
+			
+ReactDOM.render(
+  <CommentBox />,
+  document.getElementById('demmo')
+);
+		</script>
+   
+   	
+  </body>
+</html>
