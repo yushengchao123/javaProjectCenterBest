@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+
+import com.cwc.demo.model.ActivityProvPo;
 import com.cwc.demo.model.FileModel;
 import com.cwc.demo.model.UserInfo;
 
@@ -26,5 +28,12 @@ public interface MyBatisDao {
 
 	UserInfo findUserByName(@Param("userName")String userName);
 
+	/**
+	 * 获取活动列表的数据
+	 * @param bo
+	 * @return
+	 */
+	 List<Map<String, String>> getActivityList(ActivityProvPo po);
+	
 
 }

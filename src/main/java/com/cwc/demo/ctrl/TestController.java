@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.cwc.common.utils.UrlTitleUtils;
+import com.cwc.demo.model.ActivityProvPo;
 import com.cwc.demo.model.GeneralModel;
 import com.cwc.demo.model.UserInfo;
 import com.cwc.demo.service.TestService;
@@ -31,7 +32,7 @@ public class TestController {
 	
 	@Autowired
 	private TestService service;
-	
+	private ActivityProvPo po;
 	private String page;
 	private Map<String,Object> map= new HashMap<String,Object>();
 	private static Logger log = Logger.getLogger(TestController.class);
@@ -115,12 +116,20 @@ public class TestController {
 	@RequestMapping(value = { "/demo" })
 	public String ReactLogin(Model model,HttpServletRequest request) {	
 		UserInfo userinfo = new UserInfo();
-		List<UserInfo> list = new ArrayList<UserInfo>();
-		list = service.getUserList();
-		model.addAttribute("singlePerson", userinfo);
-		model.addAttribute("people", list);
+		
 		return "ReactLogin";
 	}
+	
+	@RequestMapping(value = {"/list"},method = RequestMethod.POST)
+	public @ResponseBody String getActivityList(Model model){
+		List<Map<String, String>> list = new ArrayList<Map<String, String>>();		
+		list = service.getActivityList(po);
+		
+	
+		return JSON.toJSONString(list);
+		
+	}
+	
 	
 	@RequestMapping("/403")
     public String error(){

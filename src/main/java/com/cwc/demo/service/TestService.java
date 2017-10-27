@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cwc.demo.dao.MyBatisDao;
+import com.cwc.demo.model.ActivityProvPo;
 import com.cwc.demo.model.GeneralModel;
 import com.cwc.demo.model.UserInfo;
 
@@ -24,7 +25,7 @@ public class TestService {
 	
 	@Autowired
 	private MyBatisDao dao;
-
+	private ActivityProvPo po;
 	public List<UserInfo> getUserList() {
 		// TODO Auto-generated method stub
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -32,6 +33,15 @@ public class TestService {
 		System.out.println(map);
 		return dao.getUserList();
 	}
+	
+	public List<Map<String, String>> getActivityList(ActivityProvPo po) {
+		// TODO Auto-generated method stub
+	
+		
+		return dao.getActivityList(po);
+	}
+	
+	
 	@Transactional
 	public Boolean save(GeneralModel model, MultipartFile file,
 			HttpServletRequest request) {

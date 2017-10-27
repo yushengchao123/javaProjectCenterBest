@@ -46,4 +46,21 @@
    <select id = "validLogin" parameterType="com.cwc.demo.model.UserInfo" resultType="java.lang.String">
        select password from pw_userinfo where login_id = #{loginId,jdbcType=VARCHAR}
    </select>
+   <select id="findallactivity" parameterType="com.cwc.demo.model.ActivityProvPo" resultType="java.util.HashMap" >
+       SELECT 	t.ACTIVITY_ID as "activityId",
+				t.ACTIVITY_NAME as"activityName", 
+				t.ACTIVITY_DESC as "activityDesc",
+				t.CREATE_NAME  as "createName",
+				t.TELEPHONE as "telephone",
+				t.CREATEDATE as "createDate",
+				t.STARTDATE as "startDate",
+				t.ENDDATE as "endDate",
+				t.ORGLEVER as "orgLevel",
+				t.ORGRANGE as "orgRange"
+				FROM clyx_activity t
+   </select>
+   
+   
+   
+   
 </mapper>

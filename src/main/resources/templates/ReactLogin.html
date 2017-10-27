@@ -18,13 +18,15 @@
    <script th:src="@{/js/lib/react/react-dom-0.14.0.js}" type="text/javascript"></script>
    <script th:src="@{/js/lib/react/browser.min.js}" type="text/javascript"></script>	 	 
    <script th:src="@{/js/lib/react/antd-with-locales.js}" type="text/javascript"></script>
-   
+   <script th:src="@{/js/cwc/reactTable.js}" type="text/babel"></script>
    </head>
 	
   
-  <body>
+  <body ncontextmenu="return false" ndragstart="return false" nselectstart ="return false" nselect="document.selection.empty()" ncopy="document.selection.empty()" nbeforecopy="return false"onmouseup="document.selection.empty()">
    
-   <div id="demmo"></div>
+ 
+   <div id="demo2"></div>
+     <div id="demmo"></div>
 		<script type="text/babel">
 			const { Button,Checkbox,onChange,Layout,Icon,Calendar,onPanelChange,DatePicker,Row, Col,Menu,Form,Input, Radio,Tooltip} = antd
     	const { Header, Footer, Sider, Content } = Layout
