@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
+
 import com.cwc.common.utils.UrlTitleUtils;
+import com.cwc.common.utils.page.Pagination;
 import com.cwc.demo.model.ActivityProvPo;
 import com.cwc.demo.model.GeneralModel;
 import com.cwc.demo.model.UserInfo;
@@ -121,12 +123,18 @@ public class TestController {
 	}
 	
 	@RequestMapping(value = {"/list"},method = RequestMethod.POST)
-	public @ResponseBody String getActivityList(Model model){
+	public @ResponseBody Pagination getActivityList(Model model, ActivityProvPo po, Pagination pagination){
+		
+		if (po == null) {
+			po = new ActivityProvPo();
+		}
 		List<Map<String, String>> list = new ArrayList<Map<String, String>>();		
 		list = service.getActivityList(po);
 		
-	
-		return JSON.toJSONString(list);
+		pagination = service.getActivityList2(po, pagination);
+		System.out.println(JSON.toJSONString(pagination));
+		
+		return pagination;
 		
 	}
 	

@@ -3,6 +3,7 @@ package com.cwc.demo.service;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,15 +11,25 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+
+
+
+
+
+
+import com.cwc.common.utils.page.Pagination;
 import com.cwc.demo.dao.MyBatisDao;
 import com.cwc.demo.model.ActivityProvPo;
 import com.cwc.demo.model.GeneralModel;
 import com.cwc.demo.model.UserInfo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Component
 public class TestService {
@@ -33,6 +44,33 @@ public class TestService {
 		System.out.println(map);
 		return dao.getUserList();
 	}
+	
+	
+	
+	
+	/**
+	 * 获取成功标准产品列表
+	 */
+	public Pagination getActivityList2(ActivityProvPo po, Pagination page) {
+
+		if (po == null) {
+			po = new ActivityProvPo();
+		}
+		List<Map<String, String>> list = dao.getActivityList(po);
+		List<Map<String, String>> list1 = new ArrayList<Map<String, String>>();
+		System.out.println("list+++++++++"+list);
+		PageInfo<Map<String, String>> pageinfo = new PageInfo<Map<String, String>>(list);
+		System.out.println("info+++++++++"+pageinfo);
+		page.setList(list);
+		page.setTotalCount(pageinfo.getTotal());
+		return page;
+		// System.out.println(bo.getSuccessStandardPo().getRst1());
+
+	}
+	
+	
+	
+	
 	
 	public List<Map<String, String>> getActivityList(ActivityProvPo po) {
 		// TODO Auto-generated method stub

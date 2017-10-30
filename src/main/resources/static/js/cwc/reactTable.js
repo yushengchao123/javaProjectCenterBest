@@ -24,37 +24,37 @@ var Col = antd.Col;
 var moment = moment;
 
 
-const columns = [{
-	  title: '地域',
-	  dataIndex: 'orgLevel',
-	}, {
+const columns = [ {
 	  title: '活动id',
-	  dataIndex: 'activityDailyId',
+	  dataIndex: 'activityId',
 	}, {
 	  title: '活动名称',
-	  dataIndex: 'activityDailyName',
+	  dataIndex: 'activityName',
 	}, {
-	  title: '活动主题',
-	  dataIndex: 'activityTheme',
-	}, {
-	  title: '活动类型',
-	  dataIndex: 'activityCycle',
-	}, {
-	  title: '活动分类',
-	  dataIndex: 'parentActivity',
-	}, {
-	  title: '时间',
-	  dataIndex: 'starttime',
-	}, {
-	  title: '时间',
-	  dataIndex: 'endtime',
-	}, {
-	  title: '活动状态',
-	  dataIndex: 'stateDesc',
+	  title: '区域描述',
+	  dataIndex: 'activityDesc',
 	}, {
 	  title: '创建人',
-	  dataIndex: 'createUserName',
-	}
+	  dataIndex: 'createName',
+	}, {
+	  title: '电话',
+	  dataIndex: 'telephone',
+	}, {
+	  title: '时间',
+	  dataIndex: 'createDate',
+	}, {
+	  title: '时间',
+	  dataIndex: 'endDate',
+	}, {
+	  title: '时间',
+	  dataIndex: 'startDate',
+	}, {
+	  title: '领域',
+	  dataIndex: 'orgRange',
+	},{
+		  title: '境界',
+		  dataIndex: 'orgLevel',
+		}
 	];
 
 	const data = [];
@@ -97,11 +97,12 @@ var TableDemo = React.createClass({
             "pageSize" : 10,
         };
         $.ajax({
+        	type : "POST",
             url: "../cwc/list",
             dataType: "json",
             data:{"jsonData": JSON.stringify(tmpObj)},
             success: function (data) {
-                console.log(data.list);
+                console.log(data);
                 this.setState({
                     data : data.list,
                     count : data.totalCount,
@@ -111,6 +112,7 @@ var TableDemo = React.createClass({
 
         });
         $.ajax({
+        	type : "POST",
             url: "../cwc/list",
             dataType: "json",
             success: function (data) {
@@ -132,6 +134,7 @@ var TableDemo = React.createClass({
             "page" : 1,
         };
         $.ajax({
+        	type : "POST",
             url: "../cwc/list",
             dataType: "json",
             data: {jsonData : JSON.stringify(tmpObj)},
@@ -155,6 +158,7 @@ var TableDemo = React.createClass({
             "endDate" : this.props.form.getFieldValue('startDate') ? this.props.form.getFieldValue('startDate')[1].format("YYYY-MM-DD") : "",
         };
         $.ajax({
+        	type : "POST",
             url: "../cwc/list",
             dataType: "json",
             data: {jsonData : JSON.stringify(tmpObj)},
@@ -208,7 +212,7 @@ var TableDemo = React.createClass({
                 </Row>
                 <Row>
                     <Col span={20} offset={2}>
-                        <Table  loading={this.state.loading} size="middle" columns={columns} dataSource={data} >
+                        <Table  loading={this.state.loading} size="middle" columns={columns} dataSource={this.state.data} >
                            
                         </Table>
                     </Col>
