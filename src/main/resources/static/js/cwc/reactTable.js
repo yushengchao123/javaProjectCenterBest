@@ -187,13 +187,7 @@ var TableDemo = React.createClass({
             <Form onSubmit={this.search}>
                 <Row gutter={24}>
                     <Col span={7} offset={2}>
-                        <FormItem {...formItemLayout} label="行业类型">
-                            {getFieldDecorator('trade')(
-                                <Select placeholder="请选择行业类型" >
-                                    {this.state.trade.map(tradeNameOption)}
-                                </Select>
-                            )}
-                        </FormItem>
+                        
                     </Col>
                     <Col span={7}>
                         <FormItem {...formItemLayout} label="开始时间">

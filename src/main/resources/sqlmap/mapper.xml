@@ -59,8 +59,16 @@
 				t.ORGRANGE as "orgRange"
 				FROM clyx_activity t
    </select>
-   
-   
+  <!--  ysc-chat -->
+   <insert id="savechatComment" parameterType="java.util.HashMap">
+				INSERT INTO
+				CHAT_TALK(USER_NAME, CREATE_TIME, USER_TALKDESC)
+				VALUES(
+				#{userName},		
+				#{createTime},
+				#{userTalkDesc})
+				
+		</insert>
    
    
 </mapper>

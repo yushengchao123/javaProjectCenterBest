@@ -23,9 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 
+
+
 import com.cwc.common.utils.page.Pagination;
 import com.cwc.demo.dao.MyBatisDao;
 import com.cwc.demo.model.ActivityProvPo;
+import com.cwc.demo.model.ChatTalk;
 import com.cwc.demo.model.GeneralModel;
 import com.cwc.demo.model.UserInfo;
 import com.github.pagehelper.PageHelper;
@@ -37,6 +40,7 @@ public class TestService {
 	@Autowired
 	private MyBatisDao dao;
 	private ActivityProvPo po;
+
 	public List<UserInfo> getUserList() {
 		// TODO Auto-generated method stub
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -67,7 +71,12 @@ public class TestService {
 		// System.out.println(bo.getSuccessStandardPo().getRst1());
 
 	}
-	
+	public void savechatComment(Map<String, String> requestMap){
+		
+		dao.savechatComment(requestMap);
+		
+		
+	}
 	
 	
 	

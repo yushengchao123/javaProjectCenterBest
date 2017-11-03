@@ -7,7 +7,10 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 
+
+
 import com.cwc.demo.model.ActivityProvPo;
+import com.cwc.demo.model.ChatTalk;
 import com.cwc.demo.model.FileModel;
 import com.cwc.demo.model.UserInfo;
 
@@ -34,6 +37,6 @@ public interface MyBatisDao {
 	 * @return
 	 */
 	 List<Map<String, String>> getActivityList(ActivityProvPo po);
-	
+	public void savechatComment(Map<String, String> requestMap);
 
 }

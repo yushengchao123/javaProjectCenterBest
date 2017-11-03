@@ -1,16 +1,20 @@
 package com.cwc.demo.ctrl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.spi.http.HttpContext;
 
 import org.apache.http.HttpRequest;
 import org.apache.log4j.Logger;
+import org.h2.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +25,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
-
 import com.cwc.common.utils.UrlTitleUtils;
 import com.cwc.common.utils.page.Pagination;
 import com.cwc.demo.model.ActivityProvPo;
+import com.cwc.demo.model.ChatTalk;
 import com.cwc.demo.model.GeneralModel;
 import com.cwc.demo.model.UserInfo;
 import com.cwc.demo.service.TestService;
@@ -38,9 +42,14 @@ public class TestController {
 	private String page;
 	private Map<String,Object> map= new HashMap<String,Object>();
 	private static Logger log = Logger.getLogger(TestController.class);
-
+	private ChatTalk chat;
+	Map<String,String> requestMap = new HashMap<String,String>();
 	public void setMap(Map<String, Object> map) {
 		this.map = map;
+	}
+	public void setChat(ChatTalk chat){
+		this.chat=chat;
+		
 	}
 	
 	@RequestMapping("/index")
@@ -122,6 +131,23 @@ public class TestController {
 		return "ReactLogin";
 	}
 	
+	@RequestMapping(value = { "/TableDemo" })
+	public String ReactTableDemo(Model model,HttpServletRequest request) {	
+		UserInfo userinfo = new UserInfo();
+		
+		
+		
+		
+		return "TableDemo";
+	}
+	@RequestMapping(value = { "/ListDemo" })
+	public String ReactListDemo(Model model,HttpServletRequest request) {	
+		
+		return "ListDemo";
+	}
+	
+	
+	
 	@RequestMapping(value = {"/list"},method = RequestMethod.POST)
 	public @ResponseBody Pagination getActivityList(Model model, ActivityProvPo po, Pagination pagination){
 		
@@ -133,10 +159,58 @@ public class TestController {
 		
 		pagination = service.getActivityList2(po, pagination);
 		System.out.println(JSON.toJSONString(pagination));
-		
+
 		return pagination;
 		
 	}
+	
+	@RequestMapping(value = {"/saveTalk"},method = RequestMethod.POST)
+	public void saveTalk(HttpServletRequest  request,HttpServletResponse  response){
+		init(request);
+		
+		System.out.println("--------------```"+requestMap);
+		/*if (chat == null) {
+			chat = new ChatTalk();
+		}
+		chat.setUserName("ysc");
+		String cc=chat.getUserName();
+		System.out.println(cc);
+		chat.setCreateTime("2017/10/11 14:55");
+		chat.setUserTalkDesc("siiasdifhaisdhfoiashdfoasidhfoasdhfoiaisdhfioas");
+		*/
+		service.savechatComment(requestMap);
+		
+
+		
+	}
+	
+	
+	private void init(HttpServletRequest  request){
+		try {
+			getRequestMap(request);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//requestMap.put("tenantId","uni097");
+	}
+	
+	private void getRequestMap(HttpServletRequest request)
+			throws UnsupportedEncodingException {
+		requestMap.clear();
+		Map<String,String[]> tempMap = request.getParameterMap();
+		Set<String> keys = tempMap.keySet();
+		for(String key:keys){
+			if(request.getParameter(key) != null){
+				byte source [] = request.getParameter(key).getBytes("UTF-8");
+	            String modelname = new String (source,"UTF-8");
+	            requestMap.put(key,modelname);
+			}
+		}	
+	}
+	
+	
 	
 	
 	@RequestMapping("/403")
