@@ -3,6 +3,7 @@ package com.cwc.demo.service;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,6 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
+
+
+
+
 
 
 
@@ -73,11 +79,22 @@ public class TestService {
 	}
 	public void savechatComment(Map<String, String> requestMap){
 		
+		System.out.println("request---------"+requestMap);
+		Date now = new Date(); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//可以方便地修改日期格式
+		String hehe = dateFormat.format( now ); 
+		System.out.println("time++++++++"+hehe); 
+		requestMap.put("createTime",hehe);
 		dao.savechatComment(requestMap);
 		
 		
 	}
-	
+	public List<Map<String, String>> selectList(Map<String, String> requestMap) {
+		// TODO Auto-generated method stub
+		
+		
+		return dao.selectList(requestMap);
+	}
 	
 	
 	

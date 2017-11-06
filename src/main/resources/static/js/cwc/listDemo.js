@@ -48,12 +48,12 @@ var ListDemo = React.createClass({
        
         $.ajax({
         	type : "POST",
-            url: "../cwc/list",
+            url: "../cwc/selectList",
             dataType: "json",
             success: function (data) {
                 console.log(data);
                 this.setState({
-                	dataSource : data.list,
+                	dataSource : data,
                     count : data.totalCount,
                     loading : false,
                 })
@@ -63,19 +63,22 @@ var ListDemo = React.createClass({
       
 
     },handTellClick:function(){
-    	console.log(this.state.tellbody);
     	$.ajax({
 	    	url:"../cwc/saveTalk",
-	    	type:"post",
+	    	type:"post", 
+	    	 dataType: "json",
 	    	data:{
-	    		"userTalkDesc":this.state.tellbody,
-	    		"userName":this.state.tellname
-	    	},
-	    	async:true,
-	    	success:function(result){
-	    		
-	    		//location.href="../redispush/main";
-	    	}
+	    		userTalkDesc:this.state.tellbody,
+	    		userName:"cwc"
+	    	},async:true,
+	    	success:function(data){
+	    		console.log(data);
+	    		this.setState({
+                	dataSource : data,
+                    loading : false,
+                    tellbody:""
+                })
+	    	}.bind(this)
 	    });
     },Tellchange:function(event){
     	this.setState({tellbody:event.target.value});
@@ -90,7 +93,7 @@ var ListDemo = React.createClass({
            {
                this.state.dataSource.map(function (item) {
                    return (
-                       <li className="tellBox" key={item.activityId}>
+                       <li className="tellBox" key={item.chatID}>
    
                       <Row type="flex" justify="center">
                   		<Col span="12">
@@ -98,14 +101,14 @@ var ListDemo = React.createClass({
                   		
                         <Row type="flex" justify="start">
                         	<Col span="12">
-                        	<div className="fx1">评论人：{item.activityName}||评论时间{item.createDate}</div>
+                        	<div className="fx1">评论人：{item.userName}||评论时间{item.createTime}</div>
                         	
                         	</Col>
                        </Row> 
                         
                        <Row type="flex" justify="center">
                         <Col span="20">
-                        <div className="listContent">{item.activityDesc}</div>
+                        <div className="listContent">{item.userTalkDesc}</div>
                         </Col>
                         
                         </Row> 

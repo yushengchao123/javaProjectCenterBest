@@ -70,5 +70,11 @@
 				
 		</insert>
    
-   
+   <select id="selectList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    	select  t.CHAT_ID	as "chatID",
+    			t.USER_NAME as "userName",
+    			t.CREATE_TIME as "createTime",    	
+    			t.USER_TALKDESC as "userTalkDesc"
+		 from CHAT_TALK t
+    </select>
 </mapper>

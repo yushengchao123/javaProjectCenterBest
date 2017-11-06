@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 
+
 import com.cwc.demo.model.ActivityProvPo;
 import com.cwc.demo.model.ChatTalk;
 import com.cwc.demo.model.FileModel;
@@ -38,5 +39,6 @@ public interface MyBatisDao {
 	 */
 	 List<Map<String, String>> getActivityList(ActivityProvPo po);
 	public void savechatComment(Map<String, String> requestMap);
+	public List<Map<String, String>> selectList(Map<String, String> requestMap);
 
 }

@@ -165,7 +165,7 @@ public class TestController {
 	}
 	
 	@RequestMapping(value = {"/saveTalk"},method = RequestMethod.POST)
-	public void saveTalk(HttpServletRequest  request,HttpServletResponse  response){
+	public @ResponseBody String saveTalk(HttpServletRequest  request,HttpServletResponse  response){
 		init(request);
 		
 		System.out.println("--------------```"+requestMap);
@@ -179,15 +179,44 @@ public class TestController {
 		chat.setUserTalkDesc("siiasdifhaisdhfoiashdfoasidhfoasdhfoiaisdhfioas");
 		*/
 		service.savechatComment(requestMap);
-		
+		try {
+			init(request);
+			
+			List<Map<String, String>> result   = service.selectList(requestMap);
+			System.out.println(result+"ssssss");
+
+			return JSON.toJSONString(result);
+		} catch (Exception e) {
+			return null;
+		}
 
 		
 	}
+	@RequestMapping(value = {"/selectList"},method = RequestMethod.POST)
+	public @ResponseBody String selectList(HttpServletRequest  request,HttpServletResponse  response){
+		
 	
+		
+		try {
+			init(request);
+			
+			List<Map<String, String>> result   = service.selectList(requestMap);
+			System.out.println(result+"ssssss");
+
+			return JSON.toJSONString(result);
+		} catch (Exception e) {
+			return null;
+		}
+		
+		
+		
+		
+	}
 	
 	private void init(HttpServletRequest  request){
 		try {
 			getRequestMap(request);
+			String result = StringUtils.isNullOrEmpty(requestMap.get("userName"))?requestMap.put("userName", "匿名"):null;
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
