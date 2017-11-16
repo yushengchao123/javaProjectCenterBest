@@ -49,7 +49,11 @@
 				margin-bottom: 4px;
 			}
 			/*定义二级菜单样式*/
-			
+			.navbar-static-top {
+    			background-color: #373D41 !important;
+    			margin-bottom: 5px;
+    			color:white;
+			}
 			.secondmenu a {
 				font-size: 10px;
 				color: #4A515B;
@@ -78,14 +82,91 @@
 			.ullayout{
 				list-style-type: none;
 				float: left;
+				width:100%;
 			}
 			.ullayout li{
 				
 				float: left;
 				margin: 0 30px 0 30px;
+				width:20%;
 			}
 			.lilayout{
 				height: 200px;
-				background: #A6E1EC;
-				width: 300px
+				padding:50px;
+				
+			}
+			.rowUl{
+			list-style-type: none;
+			}
+			.rowLi{
+			float:left;
+			margin: 0 10px 0 10px;
+			
+			}
+			.bigicon{
+			width:80px;
+			height:80px;
+			font-size:80px;
+			}
+			.divbox{
+			
+			margin-top:80px;
+			margin-bottom:80px;
+			background:#F5F5F5;
+			}
+			.boxul{
+				list-style-type: none;
+				float: left;
+				width:100%;
+			}
+			.boxul li{
+				float: left;
+				padding-left: 10px;
+    			padding-right: 10px;
+				width:33.33%;
+			
+			}
+			.item-box{
+				transition: all .15s cubic-bezier(.4,0,.2,1);
+    			cursor: pointer;
+    			margin-bottom: 20px;
+    			background-color: #fff;
+    			border: 2px solid #c5d8db;
+
+			} 
+			.box-header{
+			        padding: 18px 25px;
+    				font-size: 14px;
+    				color: #373d41;
+			
+			}.normal-img{
+			width:100%;
+			}   
+			/* 轮播图部分 */
+			.godcontrol{
+				background: -webkit-linear-gradient(top, #1a1454 0%, #0e81a5 100%);;
+				display: inline-block;
+				width: 100%;
+				height: 40%;
+				margin: 0 0 20px 0;
+			}
+			.LabelDemo{
+				margin:50px 0 5px 50px;
+				width: 50%;
+				display: inline-block;
+				color: white;
+				font-size: 38px;
+				text-align: left;
+			}
+			.LabelDesc{
+				margin:50px 0 5px 50px;
+				width: 50%;
+				display: inline-block;
+				color: white;
+				font-size: 20px;
+				text-align: center;
+			}
+			.Carouselbody{
+				width:100%;
+				height:400px;
 			}
