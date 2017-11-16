@@ -22,8 +22,8 @@ import com.cwc.demo.model.UserInfo;
 @SpringBootApplication
 @EnableAutoConfiguration
 @MapperScan("com.cwc.demo.dao")
-@ComponentScan(basePackages = "com.cwc.demo")
-@ServletComponentScan(basePackages = "com.cwc.demo")
+@ComponentScan(basePackages = "com.cwc.demo,com.cwc.common.config")
+@ServletComponentScan(basePackages = "com.cwc.demo,com.cwc.common.config")
 public class DemoApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
