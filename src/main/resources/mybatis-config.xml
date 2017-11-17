@@ -47,6 +47,7 @@
 	<!--mapper映射 -->
 	<mappers>
 	<mapper resource="sqlmap/mapper.xml"/>
+	<mapper resource="sqlmap/permission.xml"/>
 	<mapper resource="sqlmap/VerificationLogMapper.xml"/>
 	</mappers>
 </configuration>

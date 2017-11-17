@@ -10,9 +10,13 @@ import org.springframework.stereotype.Repository;
 
 
 
+
+
+
 import com.cwc.demo.model.ActivityProvPo;
 import com.cwc.demo.model.ChatTalk;
 import com.cwc.demo.model.FileModel;
+import com.cwc.demo.model.RoleInfo;
 import com.cwc.demo.model.UserInfo;
 
 @Repository
@@ -40,5 +44,11 @@ public interface MyBatisDao {
 	 List<Map<String, String>> getActivityList(ActivityProvPo po);
 	public void savechatComment(Map<String, String> requestMap);
 	public List<Map<String, String>> selectList(Map<String, String> requestMap);
+
+	List<RoleInfo> findRolesByName(@Param("userName")String userName);
+
+	List<String> getAllAuthorityName();
+
+	List<String> getResource(String auth);
 
 }
