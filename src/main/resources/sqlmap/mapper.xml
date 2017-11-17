@@ -10,7 +10,7 @@
    </select>
    
    <select id="findUserByName" parameterType="java.lang.String" resultType="com.cwc.demo.model.UserInfo">
-       select login_id as "loginId",
+       select login_id as "userName",
              password as "password"
              from pw_userinfo where login_id = #{userName,jdbcType=VARCHAR}
    </select>
