@@ -12,18 +12,25 @@ public class SecurityUser implements UserDetails{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String password;
-	private String loginId;
+	private String userName;
 	public SecurityUser(UserInfo user) {
 		this.password = user.getPassword();
-		this.loginId = user.getLoginId();
+		this.userName = user.getUserName();
 	}
-	public String getLoginId() {
-		return loginId;
+	
+	
+
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setLoginId(String loginId) {
-		this.loginId = loginId;
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -48,7 +55,7 @@ public class SecurityUser implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return loginId;
+		return userName;
 	}
 
 	@Override

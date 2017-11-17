@@ -7,7 +7,7 @@ public class UserInfo {
 	private String name;
 	private String address;
 	private String createTime;
-	private String loginId;
+	private String userName;
 	
 	public String getId() {
 		return id;
@@ -45,12 +45,14 @@ public class UserInfo {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	public String getLoginId() {
-		return loginId;
+	public String getUserName() {
+		return userName;
 	}
-	public void setLoginId(String loginId) {
-		this.loginId = loginId;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+
+	
 	
 	
 

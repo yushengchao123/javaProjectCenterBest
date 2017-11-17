@@ -22,13 +22,13 @@
     <div class="bg">	
 		<div class="bgc">
 			
-			
+			<form name="form" th:action="@{/showtime}" action="/showtime" method="post">
 				<div class="loginmain">
 						<div class="lc" >
 							<ul>
-								<li><label><span class="labename">用户</span><input type="text" id="username" class="form-control" style="width: 70%;display: inline-block;"></input></label></li>
-								<li><label><span class="labename">密码</span><input type="password" id="password" class="form-control" style="width: 70%;display: inline-block;"></input></label></li>
-								<li><input class="btn btn-danger" type="button" id="go" value="登陆"></input></li>
+								<li><label><span class="labename">用户</span><input type="text" id="username" name="username" class="form-control" style="width: 70%;display: inline-block;"></input></label></li>
+								<li><label><span class="labename">密码</span><input type="password" id="password" name="password" class="form-control" style="width: 70%;display: inline-block;"></input></label></li>
+								<li><input class="btn btn-danger" type="submit" id="go" value="登陆"></input></li>
 							</ul>
 							
 					<div class="alert alert-success fade in hidden" id="cc" >
@@ -46,7 +46,7 @@
 					
 					
 				</div>
-				
+			</form>	
 			
 		</div>	
 		</div>	
