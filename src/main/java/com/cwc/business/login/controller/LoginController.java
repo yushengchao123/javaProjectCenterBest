@@ -70,7 +70,7 @@ public class LoginController {
         }  
         catch(Exception ex)     {
             msg.put("result", false);
-            msg.put("result", "用户注册异常");
+            msg.put("msg", "用户注册异常");
             ex.printStackTrace(); 
         }  
         return msg;  

@@ -38,14 +38,14 @@ public class LoginServiceImpl implements LoginService{
             if(verDo == null) {
                 //超过有效时间
                 json.put("result", false);
-                json.put("result", "没有该邮箱的验证码");
+                json.put("msg", "没有该邮箱的验证码");
                 return json;
             }
              Date sendTime = verDo.getSendTime();
             if( (new Date().getTime() -sendTime.getTime())>Send.EFFECTIVE_TIME ) {
                 //超过有效时间
                 json.put("result", false);
-                json.put("result", "超过有效时间");
+                json.put("msg", "超过有效时间");
                 return json;
             }
             
