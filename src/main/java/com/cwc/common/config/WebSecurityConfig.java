@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //允许所有用户访问"/"和"/home"
         http.authorizeRequests()
                 .antMatchers("/index").permitAll()
+                .antMatchers("/interfaces/*").permitAll()
                 //其他地址的访问均需验证权限
                 .anyRequest().authenticated()
                 .and()
