@@ -1,13 +1,18 @@
 package com.cwc.demo.model;
 
+import java.util.List;
+
 public class UserInfo {
 	private String id;
 	private String password;
 	private String sex;
 	private String name;
-	private String address;
+	private String nickName;
 	private String createTime;
 	private String userName;
+	private String mail;
+	
+	private List<RoleInfo> roles;
 	
 	public String getId() {
 		return id;
@@ -33,12 +38,6 @@ public class UserInfo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	public String getCreateTime() {
 		return createTime;
 	}
@@ -51,6 +50,26 @@ public class UserInfo {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public List<RoleInfo> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<RoleInfo> roles) {
+		this.roles = roles;
+	}
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	
+	
 
 	
 	
