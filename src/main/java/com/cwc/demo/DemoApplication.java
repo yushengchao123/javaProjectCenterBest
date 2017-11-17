@@ -13,7 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 @SpringBootApplication
 @EnableAutoConfiguration
-@MapperScan("com.cwc.demo.dao")
+//@MapperScan("com.cwc.demo.dao")
+//@MapperScan("com.cwc.business.login.dao")
+@MapperScan(value={"com.cwc.demo.dao","com.cwc.business.*.dao"})
 @ComponentScan(basePackages = "com.cwc")
 @ServletComponentScan(basePackages = "com.cwc")
 public class DemoApplication extends SpringBootServletInitializer {

@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.http.HttpMethod;  
 
 @Configuration
 @EnableWebMvcSecurity
@@ -25,9 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         //允许所有用户访问"/"和"/home"
-        http.authorizeRequests()
+        //csrf().disable().(关闭防跨域攻击功能，使用 http.csrf().disable()：)
+        http.csrf().disable().
+                 authorizeRequests()
                 .antMatchers("/index").permitAll()
                 .antMatchers("/interfaces/*").permitAll()
                 //其他地址的访问均需验证权限

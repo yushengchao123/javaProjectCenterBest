@@ -4,35 +4,28 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.mail.internet.MimeMessage;  
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;  
-import org.springframework.mail.javamail.MimeMessageHelper;  
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;  
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.fastjson.JSONObject;
+import com.cwc.business.login.service.LoginService;
+import com.cwc.business.login.service.Send;
+import com.cwc.business.message.mail.Sendmail;  
   
 @RestController  
-@RequestMapping("interfaces")  
+@RequestMapping("/interfaces")  
 public class RestInterface {
     @Autowired  
-    JavaMailSender mailSender;  
-      
-    @Value("${spring.mail.username}")
-    private String userName;
-    
+    Sendmail mailSender;  
+    @ResponseBody
     @RequestMapping(value ="sendemail",method = RequestMethod.GET)  
     public Object sendEmail(String mail)   {  
         try  
         {  
-            final MimeMessage mimeMessage = this.mailSender.createMimeMessage();  
-            final MimeMessageHelper message = new MimeMessageHelper(mimeMessage);  
-            message.setFrom(userName);  
-            message.setTo(mail);  
-         //   message.setTo("282034670@qq.com");  
-            message.setSubject("业余交流群系统验证码"); 
             Integer random = (int)(Math.random()* 100000);
             DateFormat hour = new SimpleDateFormat("HH:mm:ss");
             DateFormat day = new SimpleDateFormat("yyyy-MM-dd");
@@ -51,9 +44,7 @@ public class RestInterface {
             sb.append("，日期");
             sb.append(day.format(date));
             sb.append("。");
-            
-            message.setText(sb.toString());  
-            this.mailSender.send(mimeMessage);  
+            mailSender.sendMail(mail, sb.toString(),"业余交流群系统验证码");
             
         }  
         catch(Exception ex)     {
@@ -61,4 +52,44 @@ public class RestInterface {
         }  
         return null;  
     }  
+    
+    
+
+
+   /* @Autowired
+    private LoginService loginService;
+    
+    @Autowired
+    private Send sender;
+    
+    @ResponseBody
+    @RequestMapping(value = { "/checkUsername" }, method = RequestMethod.POST)
+    public  JSONObject save(@RequestBody JSONObject param) {
+        String username = param.getString("username");
+        boolean  checkResult =  loginService.checkUserName(username);
+        JSONObject result = new JSONObject();
+        result.put("result", checkResult);
+        return result;
+    }
+    @ResponseBody
+    @RequestMapping(value = { "/sendVerificationCode" }, method = RequestMethod.POST)
+    public  JSONObject sendVerificationCode(@RequestBody JSONObject param) {  
+        try  
+        {  
+            String mail =  param.getString("mailAddress");
+            boolean  result =     sender.sendMail(mail);
+            JSONObject msg = new JSONObject();
+            msg.put("result", result);
+            return msg;
+        }  
+        catch(Exception ex)     {
+           ex.printStackTrace(); 
+        }  
+        return null;  
+    }*/
+    
+    
+
+    
+    
 }
