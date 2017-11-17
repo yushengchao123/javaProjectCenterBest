@@ -1,10 +1,10 @@
 $(function(){
 				
-				$("#go").click(function(){
+				/*$("#go").click(function(){
 					$("#cc").addClass("hidden");
 					$("#dd").addClass("hidden");
 					loginsuccess();
-				});
+				});*/
 			});
 			
 			function loginsuccess(){
