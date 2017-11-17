@@ -31,5 +31,26 @@
 		        #{verificationCode,jdbcType=INTEGER}
 		    )
    </insert>
+   <insert id = "saveUser" parameterType="com.cwc.business.login.model.UserBo">
+	   INSERT into pw_userinfo (id,login_id,password,name,nickname,sex,mail,age,create_time)
+		VALUES(
+		         #{id,jdbcType=VARCHAR},
+                #{userName,jdbcType=VARCHAR},
+                MD5(#{password,jdbcType=VARCHAR}),
+                #{name,jdbcType=VARCHAR},
+                #{nickName,jdbcType=VARCHAR},
+                #{sex,jdbcType=VARCHAR},
+                #{mail,jdbcType=VARCHAR},
+                #{age,jdbcType=VARCHAR},
+                now()
+		)
+   </insert>
+   <insert id = "saveUserRole" parameterType="com.cwc.business.login.model.UserBo">
+	  INSERT into pw_userinfo_roleinfo_rel(
+		user_id,role_id
+		
+		)VALUES ( #{id,jdbcType=VARCHAR},
+                #{roleId,jdbcType=VARCHAR})
+   </insert>
    
 </mapper>

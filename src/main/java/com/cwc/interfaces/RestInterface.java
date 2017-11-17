@@ -3,7 +3,9 @@ package com.cwc.interfaces;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cwc.business.login.model.UserBo;
 import com.cwc.business.login.service.LoginService;
 import com.cwc.business.login.service.Send;
 import com.cwc.business.message.mail.Sendmail;  
@@ -87,9 +90,29 @@ public class RestInterface {
         }  
         return null;  
     }*/
-    
-    
-
+    /*@Autowired
+    private LoginService loginService;
+    @ResponseBody
+    @RequestMapping(value = { "/registered" }, method = RequestMethod.POST)
+    public  JSONObject registered(@RequestBody UserBo param) {  
+        JSONObject msg = new JSONObject();
+        try  
+        {  
+            param.setId(UUID.randomUUID().toString().replace("-", ""));
+            //注册时候没有指定角色默认是普通用户
+            if(StringUtils.isBlank(param.getRoleId())){
+                param.setRoleId("2");
+            }
+            msg = loginService.registered(param);
+        }  
+        catch(Exception ex)     {
+            msg.put("result", false);
+            msg.put("result", "用户注册异常");
+            ex.printStackTrace(); 
+        }  
+        return msg;  
+    }
+*/
     
     
 }
