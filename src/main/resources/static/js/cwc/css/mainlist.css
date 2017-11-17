@@ -101,7 +101,20 @@
 			.rowLi{
 			float:left;
 			margin: 0 10px 0 10px;
+			color:white;
+			cursor: pointer;
+			}
+			.rowLi a{
 			
+			color:white;
+			
+			}
+			.rowLi a:hover{
+		
+			color:#00cdec;
+			}
+			.rowLi :hover{
+			color:#00cdec;
 			}
 			.bigicon{
 			width:80px;
