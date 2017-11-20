@@ -12,6 +12,6 @@ import com.cwc.demo.model.Permission;
 public interface PermissionDao {
 	
     public List<Permission> findAll();
-    public List<Permission> findByAdminUserId(@Param("userName")String userId);
+    public List<Permission> findByAdminUserId(@Param("userId")String userId);
 
 }
