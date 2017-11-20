@@ -10,12 +10,20 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.cwc.common.utils.MD5Util;
+
 import org.springframework.http.HttpMethod;  
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 @Configuration
 @EnableWebMvcSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)//开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+    @Autowired
+    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 
     @Bean
     @Override
@@ -45,14 +53,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/index")//退出登录后的默认url是"/home"
                 .permitAll();
-
+        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
     }
 
 
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService());
+        auth.userDetailsService(customUserDetailsService()).passwordEncoder(
+
+            new PasswordEncoder(){
+
+                @Override
+                public String encode(CharSequence rawPassword) {
+                    return MD5Util.encode((String)rawPassword);
+                }
+
+                @Override
+                public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                    return encodedPassword.equals(MD5Util.encode((String)rawPassword));
+                }}); //user Details Service验证
+        
+        
         //auth.inMemoryAuthentication().withUser("cwc").password("123456").roles("ROLE_ADMIN");
     }
 

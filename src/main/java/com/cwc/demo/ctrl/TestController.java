@@ -30,6 +30,7 @@ import com.cwc.common.utils.page.Pagination;
 import com.cwc.demo.model.ActivityProvPo;
 import com.cwc.demo.model.ChatTalk;
 import com.cwc.demo.model.GeneralModel;
+import com.cwc.demo.model.Msg;
 import com.cwc.demo.model.UserInfo;
 import com.cwc.demo.service.TestService;
 
@@ -238,6 +239,18 @@ public class TestController {
 			}
 		}	
 	}
+	
+	    @RequestMapping("/msg")
+	    public String index(Model model){
+	        Msg msg =  new Msg("测试标题","测试内容","欢迎来到HOME页面,您拥有 ROLE_HOME 权限");
+	        model.addAttribute("msg", msg);
+	        return "home";
+	    }
+	    @RequestMapping("/admin")
+	    @ResponseBody
+	    public String hello(){
+	        return "hello admin";
+	    }
 	
 	
 	
