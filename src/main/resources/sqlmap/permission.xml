@@ -6,7 +6,7 @@
     </select>
     
     <select id="findByAdminUserId" parameterType="java.lang.String" resultType="com.cwc.demo.model.Permission">
-      select e.*
+      select DISTINCT e.*
         from pw_permission e
         LEFT JOIN pw_role_permission_rel d on d.permission_id=e.id
         LEFT JOIN pw_roleinfo c on d.role_id=c.role_id
