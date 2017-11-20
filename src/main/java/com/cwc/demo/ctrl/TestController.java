@@ -100,6 +100,16 @@ public class TestController {
 		model.addAttribute("people", list);
 		return "traditionalLogin";
 	}
+	
+	@RequestMapping(value = { "/zhuce" })
+	public String registerLogin(Model model,HttpServletRequest request) {	
+		UserInfo userinfo = new UserInfo();
+		List<UserInfo> list = new ArrayList<UserInfo>();
+		list = service.getUserList();
+		model.addAttribute("singlePerson", userinfo);
+		model.addAttribute("people", list);
+		return "register";
+	}
 	@RequestMapping(value = {"/getAge"},method = RequestMethod.POST)
 	public @ResponseBody String getAge(Model model){
 		log.info("获取年龄开始");
