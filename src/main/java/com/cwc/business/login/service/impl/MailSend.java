@@ -14,6 +14,8 @@ import com.cwc.business.message.mail.Sendmail;
 @Service
 public class MailSend implements Send{
 
+ 
+    
     @Autowired  
     private Sendmail mailSender; 
     @Autowired  
